@@ -1,0 +1,3 @@
+#Hystrix的dashboard流监控 端口
+server:
+  port: 9001

@@ -1,0 +1,33 @@
+server:
+  port: 8001
+
+# mybatis配置
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.softeem.wolf.entity
+
+# spring的配置
+spring:
+  application:
+    name: springcloud-provider-dept
+    #数据源的配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springclouddb01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: "04265315"   # 这里的password一定要加"", 不然会一直报错.
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: springcloud-provider-dept-hystrix-8001
+
+# info配置, Eureka的status的xxx/info的链接打开后的info监控信息
+info:
+  app.name: springcloud-provider-dept-hystrix-8001
+  company.name: https://www.wolf.com
+  test.name: wolf

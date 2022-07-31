@@ -1,0 +1,36 @@
+server:
+  port: 9527
+
+
+spring:
+  application:
+    name: springcloud-zuul-9527
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: zuul9527.com
+    prefer-ip-address: true
+
+info:
+  app.name: tizi-->zuul test
+  compony.name: tizi-->www.wolf.com
+  version.name: tize.01
+
+zuul:
+  routes:
+    mydept.serviceId: springcloud-provider-dept
+      #之前的查询链接地址 http://www.wolf.com:9527/springcloud-provider-dept/dept/get/1
+      #现在的查询链接地址，配置后为 http://www.wolf.com:9527/mydept/dept/get/1
+    #两者都皆可访问(原路径+现配路径)。配置自定义的前缀后 可不让客户端知道真实的ip地址
+    mydept.path: /mydept/**
+      #加上此配置后 原路径不能访问(springcloud-provider-dept/dept/get/6)，只能通过自定义的规则路径访问。
+    #ignored-services: springcloud-provider-dept
+    #星号(*) 隐藏全部的项目真实名字
+  ignored-services: "*"
+  prefix: /wolf #设置公共的地址前缀 配置后链接为：www.wolf.com:9527/wolf/mydept/dept/get/11
+
+

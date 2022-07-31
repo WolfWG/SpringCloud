@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: springcloud-consumer-dept-feign
+
+
+# Eureka配置, 服务注册到eureka中, 需要一个路径地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: springcloud-consumer-dept-feign-8080
+
+# feign配置
+feign:
+  hystrix:
+    enabled: true
